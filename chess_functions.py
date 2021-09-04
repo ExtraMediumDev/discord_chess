@@ -21,22 +21,6 @@ def coords(ntn):
     x,y = 7 - num[ntn[0]], int(ntn[1]) - 1
     return (x,y)
 
-
-
-#1. Find same color pieces attacking piece that is about to move. Moves only need to be recalculted for those pieces
-#2. Find all possible moves for the piece that is about to move and the recalculated pieces
-#3. If no pins and the move is valid, make the move, then check if the king is in danger. 
-# If king is in danger, revoke move, else you keep the move.
-#4. Check opponent king. If danger, check if attacking piece is killable, 
-# otherwise check if the king can runaway, then check if the king is blockable
-#5. If king not in danger and king not checkmated, check move list for stalemate
-#Move repitition draw will be calculated throug move history
-
-
-
-
-
-
 #checks a square if an opposing pieces are attacking it. Returns True or False.
 def check_square(board, x,y, check_for):
     dirs = [(1,1),(-1,1),(-1,-1),(1,-1),(0,1),(1,0),(0,-1),(-1,0),(1,2),(2,1),(-1,2),(-2,1),(-1,-2),(-2,-1),(1,-2),(2,-1)]
@@ -379,9 +363,7 @@ def validate(board, color, initials, kings, onboard, x1, y1, x2, y2):
 
                         
 
-                       
-
-
+                     
     #revoke move if the move is not valid, else it will update the piece position.
     if valid != True and valid != 'checkmate' and valid != 'stalemate': board[y1][x1], board[y2][x2] = past, future
     else: onboard[color][(x2,y2)] = onboard[color].pop((x1,y1))
